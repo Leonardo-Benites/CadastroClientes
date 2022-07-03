@@ -53,7 +53,7 @@ namespace CadastroClientes
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=WeatherForecast}/{action=WeatherStatus}/{id?}");
+                    pattern: "{controller=User}/{action=Index}/{id?}");
             });
         }
     }
