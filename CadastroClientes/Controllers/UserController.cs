@@ -7,15 +7,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CadastroClientes.Util;
+using CadastroClientes.Context;
 
 namespace CadastroClientes.Controllers
 {
     public class UserController : Controller
     {
         private readonly UserRepository _userRepository;
-        public UserController(UserRepository userRepository)
+        public UserController(AppDbContext context)
         {
-            _userRepository = userRepository;
+            _userRepository = new UserRepository(context);
         }
 
         [HttpGet]
