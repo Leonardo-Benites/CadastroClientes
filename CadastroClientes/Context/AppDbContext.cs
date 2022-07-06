@@ -15,8 +15,16 @@ namespace CadastroClientes.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<User>()
-                .HasIndex(u => u.Document)
-                .IsUnique();
+                .Property(u => u.Name)
+                .IsRequired();
+
+            builder.Entity<User>()
+                .Property(u => u.Password)
+                .IsRequired();
+
+            builder.Entity<User>()
+              .Property(u => u.Document)
+              .IsRequired();
         }   
     }
 }

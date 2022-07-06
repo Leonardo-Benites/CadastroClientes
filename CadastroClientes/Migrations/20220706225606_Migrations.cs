@@ -14,12 +14,12 @@ namespace CadastroClientes.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: false),
                     Mail = table.Column<string>(type: "text", nullable: true),
-                    Password = table.Column<string>(type: "text", nullable: true),
+                    Password = table.Column<string>(type: "text", nullable: false),
                     Address = table.Column<string>(type: "text", nullable: true),
                     Active = table.Column<bool>(type: "boolean", nullable: false),
-                    Document = table.Column<string>(type: "text", nullable: true),
+                    Document = table.Column<string>(type: "text", nullable: false),
                     PhoneNumber = table.Column<string>(type: "text", nullable: true),
                     Gender = table.Column<string>(type: "text", nullable: true),
                     BirthDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
@@ -28,12 +28,6 @@ namespace CadastroClientes.Migrations
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User_Document",
-                table: "User",
-                column: "Document",
-                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -1,1 +1,66 @@
-﻿
+﻿@using Microsoft.AspNetCore.Routing
+@model List<CadastroClientes.ViewModels.UserViewModel>
+
+@{
+    Layout = "_Layout";
+}
+
+<head>
+
+    <title>
+        Cadastro
+    </title>
+
+</head>
+
+<body>
+    <div>
+        <h3> Usuários </h3>
+    </div>
+
+    <div>
+        <button type="submit" onclick="location.href='@Url.Action("Create", "User")'" class="btn btn-default"> Criar novo Usuário </button>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Documento</th>
+            <th>Endereço</th>
+            <th>Numero de Telefone</th>
+            <th>Data de Nascimento</th>
+            <th>Ativo</th>
+        </tr>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => user.Name)</td>
+                <td>@Html.DisplayFor(model => user.Mail)</td>
+                <td>@Html.DisplayFor(model => user.Document)</td>
+                <td>@Html.DisplayFor(model => user.Address)</td>
+                <td>@Html.DisplayFor(model => user.PhoneNumber)</td>
+                <td>@Html.DisplayFor(model => user.BirthDate)</td>
+                <td>@Html.DisplayFor(model => user.Active)</td>
+                <td>@Html.DisplayFor(model => user.Gender)</td>
+                <td>@Html.DisplayFor(model => user.Active)</td>
+                <td>
+                    <button type="submit" onclick="location.href='@Url.Action("Update", "User",
+                    new RouteValueDictionary(new { id = user.Id }))'" class="btn btn-default">
+                        Editar
+                    </button>
+                </td>
+                <td>
+                    <button type="submit" onclick="location.href='@Url.Action("Delete", "User",
+                    new RouteValueDictionary(new { id = user.Id }))'" class="btn btn-default">
+                        Excluir
+                    </button>
+
+                </td>
+            </tr>
+
+        }
+    </table>
+
+</body>
+

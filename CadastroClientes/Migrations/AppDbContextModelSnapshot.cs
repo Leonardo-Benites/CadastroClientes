@@ -36,6 +36,7 @@ namespace CadastroClientes.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Document")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Gender")
@@ -45,18 +46,17 @@ namespace CadastroClientes.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Document")
-                        .IsUnique();
 
                     b.ToTable("User");
                 });

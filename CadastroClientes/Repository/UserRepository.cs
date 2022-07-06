@@ -28,10 +28,10 @@ namespace CadastroClientes.Repository
         {
             _context.User.Add(obj);
             await _context.SaveChangesAsync();
-        }
+            }
         public async Task Update(User obj)
         {
-            _context.User.Update(obj);
+            _context.Entry(obj).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
         public async Task Delete(User obj)
