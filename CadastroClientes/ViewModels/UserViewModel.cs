@@ -35,6 +35,6 @@ namespace CadastroClientes.ViewModels
         public string Gender { get; set; } //M ou F
         
         [Display(Name = "Data de Nascimento")]
-        public DateTime BirthDate { get; set; }
+        public string BirthDate { get; set; }
     }
 }

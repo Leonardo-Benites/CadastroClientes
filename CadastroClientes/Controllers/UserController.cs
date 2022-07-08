@@ -41,7 +41,7 @@ namespace CadastroClientes.Controllers
                         Active = user.Active,
                         PhoneNumber = user.PhoneNumber,
                         Document = user.Document,
-                        BirthDate = user.BirthDate,
+                        BirthDate = user.BirthDate.ToString("dd/MM/yyyy"),
                         Gender = user.Gender,
                     });
                 }
@@ -86,7 +86,7 @@ namespace CadastroClientes.Controllers
                     Active = user.Active,
                     PhoneNumber = user.PhoneNumber,
                     Document = user.Document,
-                    BirthDate = user.BirthDate,
+                    BirthDate = Convert.ToDateTime(user.BirthDate),
                     Gender = user.Gender,
                 });
 
@@ -120,7 +120,7 @@ namespace CadastroClientes.Controllers
                     Active = model.Active,
                     PhoneNumber = model.PhoneNumber,
                     Document = model.Document,
-                    BirthDate = model.BirthDate,
+                    BirthDate = model.BirthDate.ToString("dd/MM/yyyy"),
                     Gender = model.Gender
                 };
 
@@ -130,7 +130,7 @@ namespace CadastroClientes.Controllers
             {
                 return View();
             }
-      
+
         }
 
         [Route("/Update")]
@@ -148,7 +148,7 @@ namespace CadastroClientes.Controllers
                     Active = user.Active,
                     PhoneNumber = user.PhoneNumber,
                     Document = user.Document,
-                    BirthDate = user.BirthDate,
+                    BirthDate = Convert.ToDateTime(user.BirthDate),
                     Gender = user.Gender,
                     Password = await _userRepository.GetUserPasswordById(user.Id)
                 };
@@ -184,7 +184,7 @@ namespace CadastroClientes.Controllers
                 Active = model.Active,
                 PhoneNumber = model.PhoneNumber,
                 Document = model.Document,
-                BirthDate = model.BirthDate,
+                BirthDate = model.BirthDate.ToString("dd/MM/yyyy"),
                 Gender = model.Gender
             };
 
