@@ -1,4 +1,4 @@
-Este projeto foi desenvolvido utilizando .NET 5 e PostgreSQL com EntityFramework. 
+Este projeto foi desenvolvido utilizando .NET 5 e PostgreSQL10 com EntityFramework. 
 
 O banco de dados foi gerado através do console nuget, usando code-first.
 Foram criadas 3 constraints no banco como regra, os campos e-mail, senha e documento não podem ser nulos.
