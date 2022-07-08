@@ -24,25 +24,31 @@
 
     <table class="table">
         <tr>
+            <th>Código do Cliente</th>
             <th>Nome</th>
-            <th>E-mail</th>
+            <th>E-mail/Login</th>
             <th>Documento</th>
             <th>Endereço</th>
             <th>Numero de Telefone</th>
             <th>Data de Nascimento</th>
+            <th>Gênero</th>
             <th>Ativo</th>
+            <th>Ações</th>
+
         </tr>
         @foreach (var user in Model)
         {
             <tr>
+                <td>@Html.DisplayFor(model => user.Id)</td>
                 <td>@Html.DisplayFor(model => user.Name)</td>
                 <td>@Html.DisplayFor(model => user.Mail)</td>
                 <td>@Html.DisplayFor(model => user.Document)</td>
                 <td>@Html.DisplayFor(model => user.Address)</td>
                 <td>@Html.DisplayFor(model => user.PhoneNumber)</td>
                 <td>@Html.DisplayFor(model => user.BirthDate)</td>
-                <td>@Html.DisplayFor(model => user.Active)</td>
-                <td>@Html.DisplayFor(model => user.Gender)</td>
+                <td> @{ var gender = user.Gender == "M" ? "Masculino" : "Feminino"; } 
+                    @gender 
+                </td>
                 <td>@Html.DisplayFor(model => user.Active)</td>
                 <td>
                     <button type="submit" onclick="location.href='@Url.Action("Update", "User",

@@ -43,10 +43,10 @@ namespace CadastroClientes.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Mail")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Password")

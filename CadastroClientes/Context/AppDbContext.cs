@@ -15,7 +15,7 @@ namespace CadastroClientes.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<User>()
-                .Property(u => u.Name)
+                .Property(u => u.Mail)
                 .IsRequired();
 
             builder.Entity<User>()

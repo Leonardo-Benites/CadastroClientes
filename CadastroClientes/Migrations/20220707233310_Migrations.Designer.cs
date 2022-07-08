@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CadastroClientes.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220706225606_Migrations")]
+    [Migration("20220707233310_Migrations")]
     partial class Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,10 +45,10 @@ namespace CadastroClientes.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Mail")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Password")

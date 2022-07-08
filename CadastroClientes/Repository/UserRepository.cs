@@ -3,6 +3,7 @@ using CadastroClientes.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CadastroClientes.Repository
@@ -18,6 +19,10 @@ namespace CadastroClientes.Repository
         public async Task<User> GetUserById(int id)
         {
             return await _context.User.FindAsync(id);
+        }
+        public async Task<string> GetUserPasswordById(int id)
+        {
+            return await _context.User.Where(x => x.Id == id).Select(x => x.Password).FirstOrDefaultAsync();                ;
         }
         public async Task<List<User>> GetAll()
         {

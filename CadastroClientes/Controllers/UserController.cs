@@ -25,38 +25,53 @@ namespace CadastroClientes.Controllers
         [HttpGet]
         public async Task<ActionResult> Index()
         {
-            var users = await _userRepository.GetAll();
-            var viewModels = new List<UserViewModel>();
-            foreach (var user in users)
+            try
             {
-                viewModels.Add(new UserViewModel()
+                var users = await _userRepository.GetAll();
+                var viewModels = new List<UserViewModel>();
+                foreach (var user in users)
                 {
-                    Id = user.Id,
-                    Name = user.Name,
-                    Mail = user.Mail,
-                    Address = user.Address,
-                    Password = user.Password,
-                    Active = user.Active,
-                    PhoneNumber = user.PhoneNumber,
-                    Document = user.Document,
-                    BirthDate = user.BirthDate,
-                    //Gender = user.Gender,
-                });
-            }
+                    viewModels.Add(new UserViewModel()
+                    {
+                        Id = user.Id,
+                        Name = user.Name,
+                        Mail = user.Mail,
+                        Address = user.Address,
+                        Password = user.Password,
+                        Active = user.Active,
+                        PhoneNumber = user.PhoneNumber,
+                        Document = user.Document,
+                        BirthDate = user.BirthDate,
+                        Gender = user.Gender,
+                    });
+                }
 
-            return View(viewModels);
+                return View(viewModels);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [Route("/Create")]
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            try
+            {
+                return View();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [Route("/Create")]
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(UserViewModel user)
         {
             try
@@ -72,7 +87,7 @@ namespace CadastroClientes.Controllers
                     PhoneNumber = user.PhoneNumber,
                     Document = user.Document,
                     BirthDate = user.BirthDate,
-                    //Gender = user.Gender,
+                    Gender = user.Gender,
                 });
 
                 return RedirectToAction(nameof(Index));
@@ -87,26 +102,35 @@ namespace CadastroClientes.Controllers
         [HttpGet]
         public async Task<ActionResult> Update(int? id)
         {
-            if (id == null)
+            try
             {
-                throw new Exception();
-            }
-            var model = await _userRepository.GetUserById((int)id);
-            var user = new UserViewModel()
-            {
-                Id = model.Id,
-                Name = model.Name,
-                Mail = model.Mail,
-                Address = model.Address,
-                Password = model.Password,
-                Active = model.Active,
-                PhoneNumber = model.PhoneNumber,
-                Document = model.Document,
-                BirthDate = model.BirthDate,
-                //Gender = model.Gender
-            };
+                if (id == null)
+                {
+                    throw new Exception();
+                }
 
-            return View(user);
+                var model = await _userRepository.GetUserById((int)id);
+                var user = new UserViewModel()
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    Mail = model.Mail,
+                    Address = model.Address,
+                    Password = model.Password,
+                    Active = model.Active,
+                    PhoneNumber = model.PhoneNumber,
+                    Document = model.Document,
+                    BirthDate = model.BirthDate,
+                    Gender = model.Gender
+                };
+
+                return View(user);
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+      
         }
 
         [Route("/Update")]
@@ -121,12 +145,12 @@ namespace CadastroClientes.Controllers
                     Name = user.Name,
                     Mail = user.Mail,
                     Address = user.Address,
-                    Password = MD5Hash.CalculaHash(user.Password),
                     Active = user.Active,
                     PhoneNumber = user.PhoneNumber,
                     Document = user.Document,
                     BirthDate = user.BirthDate,
                     Gender = user.Gender,
+                    Password = await _userRepository.GetUserPasswordById(user.Id)
                 };
 
                 await _userRepository.Update(model);
